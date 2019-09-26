@@ -1,0 +1,274 @@
+<ion-app>
+  <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="taps/tabs/invoice"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Create Invoice</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="best-main-background">
+  <div class="layadmin-user-login-main">
+
+    <div class="layadmin-user-login-box layadmin-user-login-header">
+      <img src="assets\icon\favicon.png" alt="">
+      <h2>
+        <font style="vertical-align: inherit;">
+          <font style="vertical-align: inherit;">P'Big IONIC Tutorial</font>
+        </font>
+      </h2>
+    </div>
+
+
+    <form [formGroup]="InvoiceForm" (ngSubmit)="AddInvoice(InvoiceForm)">
+      <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+
+        <!-- InvoiceNo and Customer -->
+        <div class="layui-row layui-col-space10">
+          <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+            <div class="layui-form-item">
+              <input type="text" name="invoiceNo" lay-verify="required" placeholder="Invoice No" class="best-input"
+                autocomplete="true" style="padding-left: 5px; width: 100%;" formControlName="invoiceNo">
+              <div class="validation-errors" *ngIf="(InvoiceForm.controls['invoiceNo'].touched || 
+            InvoiceForm.controls['invoiceNo'].dirty) && 
+                  !InvoiceForm.controls['invoiceNo'].valid">
+                <div class="error-message" *ngIf="InvoiceForm.controls['invoiceNo'].errors?.required">
+                  Please enter Invoice No.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+            <div class="layui-form-item">
+              <ion-select formControlName="Customer" okText="Select" cancelText="Close" class="best-input"
+                placeholder="Customer">
+                <ion-select-option value="0">Select</ion-select-option>
+                <ion-select-option value="1">Customer-1</ion-select-option>
+                <ion-select-option value="2">Customer-2</ion-select-option>
+                <ion-select-option value="3">Customer-3</ion-select-option>
+                <ion-select-option value="4">Customer-4</ion-select-option>
+                <ion-select-option value="5">Customer-5</ion-select-option>
+              </ion-select>
+              <div class="validation-errors" *ngIf="(InvoiceForm.controls['Customer'].touched || InvoiceForm.controls['Customer'].dirty) && 
+              !InvoiceForm.controls['Customer'].valid">
+                <div class="error-message" *ngIf="InvoiceForm.controls['Customer'].errors?.required">
+                  Please Select Customer.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Date Invoice -->
+        <div class="layui-form-item">
+          <ion-datetime displayFormat="MMMM DD, YYYY" name="InvoiceDate" lay-verify="required" placeholder="Select Date"
+            class="best-input" formControlName="InvoiceDate"></ion-datetime>
+          <div class="validation-errors" *ngIf="(InvoiceForm.controls['InvoiceDate'].touched || 
+            InvoiceForm.controls['InvoiceDate'].dirty) && 
+                                          !InvoiceForm.controls['InvoiceDate'].valid">
+            <div class="error-message" *ngIf="InvoiceForm.controls['InvoiceDate'].errors?.required">
+              Please select your birth date.
+            </div>
+            <div class="error-message" *ngIf="InvoiceForm.controls['InvoiceDate'].errors?.range">
+              Please choose invoice date.
+            </div>
+          </div>
+        </div>
+
+        <!-- Note -->
+        <div class="layui-form-item">
+          <input type="text" name="invoiceNote" lay-verify="required" placeholder="Note" class="best-input"
+            autocomplete="true" style="padding-left: 5px; width: 100%;" formControlName="invoiceNote">
+          <div class="validation-errors" *ngIf="(InvoiceForm.controls['invoiceNote'].touched || 
+          InvoiceForm.controls['invoiceNote'].dirty) && 
+                !InvoiceForm.controls['invoiceNote'].valid">
+            <div class="error-message" *ngIf="InvoiceForm.controls['invoiceNote'].errors?.required">
+              Please enter Note.
+            </div>
+          </div>
+        </div>
+
+        <!-- ReferenceNo and PIC -->
+        <div class="layui-row layui-col-space10">
+          <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+            <div class="layui-form-item">
+              <input type="text" name="ReferenceNo" lay-verify="required" placeholder="Reference No" class="best-input"
+                autocomplete="true" style="padding-left: 5px; width: 100%;" formControlName="ReferenceNo">
+              <div class="validation-errors" *ngIf="(InvoiceForm.controls['ReferenceNo'].touched || 
+              InvoiceForm.controls['ReferenceNo'].dirty) && 
+                    !InvoiceForm.controls['ReferenceNo'].valid">
+                <div class="error-message" *ngIf="InvoiceForm.controls['ReferenceNo'].errors?.required">
+                  Please enter Reference No.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+            <div class="layui-form-item">
+              <ion-select formControlName="PIC" okText="Select" cancelText="Close" class="best-input"
+                placeholder="PIC">
+                <ion-select-option value="0">Select</ion-select-option>
+                <ion-select-option value="1">PIC-1</ion-select-option>
+                <ion-select-option value="2">PIC-2</ion-select-option>
+                <ion-select-option value="3">PIC-3</ion-select-option>
+                <ion-select-option value="4">PIC-4</ion-select-option>
+                <ion-select-option value="5">PIC-5</ion-select-option>
+              </ion-select>
+              <div class="validation-errors" *ngIf="(InvoiceForm.controls['PIC'].touched || InvoiceForm.controls['PIC'].dirty) && 
+                !InvoiceForm.controls['PIC'].valid">
+                <div class="error-message" *ngIf="InvoiceForm.controls['PIC'].errors?.required">
+                  Please Select PIC.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="ion-padding">Invoice Line</h3>
+        <hr />
+        <div
+          *ngIf="InvoiceForm && InvoiceForm.controls && InvoiceForm.controls.invoiceItems && InvoiceForm.controls.invoiceItems.controls"
+          formArrayName="invoiceItems">
+          <div *ngFor="let item of InvoiceLines.controls; let i=index">
+            <div class="form-group p-b-10" [formGroupName]="i">
+
+              <!-- ProductCode and Product Name -->
+              <div class="layui-row layui-col-space10">
+                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+                  <div class="layui-form-item">
+                    <ion-select formControlName="ProductCode" okText="Select" cancelText="Close" class="best-input"
+                      placeholder="Product Code">
+                      <ion-select-option value="0">Select</ion-select-option>
+                      <ion-select-option value="1">ProductCode-1</ion-select-option>
+                      <ion-select-option value="2">ProductCode-2</ion-select-option>
+                      <ion-select-option value="3">ProductCode-3</ion-select-option>
+                      <ion-select-option value="4">ProductCode-4</ion-select-option>
+                      <ion-select-option value="5">ProductCode-5</ion-select-option>
+                    </ion-select>
+                    <div class="validation-errors" *ngIf="(item.controls['ProductCode'].touched || item.controls['ProductCode'].dirty) && 
+                    !item.controls['ProductCode'].valid">
+                      <div class="error-message" *ngIf="item.controls['ProductCode'].errors?.required">
+                        Please Select ProductCode.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+                  <div class="layui-form-item">
+                    <input type="text" name="ProductName" lay-verify="required" placeholder="ProductName"
+                      class="best-input" autocomplete="true" style="padding-left: 5px; width: 100%;"
+                      formControlName="ProductName">
+                    <div class="validation-errors" *ngIf="(item.controls['ProductName'].touched || 
+                    item.controls['ProductName'].dirty) && 
+                    !item.controls['ProductName'].valid">
+                      <div class="error-message" *ngIf="item.controls['ProductName'].errors?.required">
+                        Please enter Product Name.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- QTY and Unit Cost -->
+              <div class="layui-row layui-col-space10">
+                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+                  <div class="layui-form-item">
+                    <ion-label color="primary">QTY</ion-label>
+                    <ion-input type="number" formControlName="qty" class="best-input ion-text-right"></ion-input>
+                    <div class="validation-errors ion-padding" *ngIf="(item.controls['qty'].touched || item.controls['qty'].dirty) && 
+                        !item.controls['qty'].valid">
+                      <div class="error-message" *ngIf="item.controls['qty'].errors?.required">
+                        Please fill QTY
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+                  <div class="layui-form-item">
+                    <ion-label color="primary">Unit Price</ion-label>
+                    <ion-input type="number" formControlName="unitPrice" class="best-input ion-text-right"></ion-input>
+                    <div class="validation-errors ion-padding" *ngIf="(item.controls['unitPrice'].touched || 
+            item.controls['unitPrice'].dirty) && 
+        !item.controls['unitPrice'].valid">
+                      <div class="error-message" *ngIf="item.controls['unitPrice'].errors?.required">
+                        Please fill Unit Price
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Discount and Line Total  -->
+              <div class="layui-row layui-col-space10">
+                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+                  <div class="layui-form-item">
+                    <ion-label color="primary">Discount</ion-label>
+                    <ion-input type="number" formControlName="discount" class="best-input ion-text-right"></ion-input>
+                  </div>
+                </div>
+                <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+                  <div class="layui-form-item">
+                    <ion-label color="primary">Line Total</ion-label>
+                    <ion-input type="number" formControlName="unitPrice" class="best-input ion-text-right"
+                      placeholder="Unit Price"></ion-input>
+                  </div>
+                </div>
+              </div>
+
+              <ion-button expand="block" color="danger" (click)="removeItem(i)">
+                <ion-icon name="trash"></ion-icon>
+                Delete
+              </ion-button>
+
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <div class="layui-trans layui-form-item layadmin-user-login-other">
+          <div class="layadmin-user-jump-change layadmin-link">
+            <ion-button color="success" type="button" (click)="addItem()" slot="end">
+              <ion-icon slot="end" name="add-circle"></ion-icon>Add Item
+            </ion-button>
+          </div>
+        </div>
+
+        <ion-item>
+          <ion-label position="floating" color="primary">Subtotal</ion-label>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label position="floating" color="primary">Other Charges</ion-label>
+          <ion-input type="number" class="ion-text-right layui-input" formControlName="otherCharges"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating" color="primary">VAT</ion-label>
+          <ion-input type="number" class="ion-text-right" readonly formControlName="vat"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating" color="primary">Grand Total</ion-label>
+          <ion-input type="number" class="ion-text-right" readonly formControlName="grandTotal"></ion-input>
+        </ion-item>
+
+
+        <div class="layui-form-item">
+          <br /><br />
+          <ion-button class="submit-btn" expand="full" shape="round" [disabled]="InvoiceForm.controls.errors"
+            type="submit">
+            Save Invoice
+            <ion-icon slot="end" ios="ios-arrow-dropright" md="md-arrow-dropright" style="padding-left: 15px">
+            </ion-icon>
+          </ion-button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</ion-content>
+</ion-app>

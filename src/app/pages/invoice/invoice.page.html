@@ -1,0 +1,18 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Invoice</ion-title>
+      <ion-buttons slot="end" color="primary"><a style="vertical-align: inherit;" style="font-size: 18px"
+          [routerLink]="['/taps/tabs/invoice/create']" routerLinkActive="router-link-active">Create</a></ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-item *ngFor="let item of header" (click)="GoToInvoiceDetails(item.invoiceNo)">
+        {{ item.invoiceNo }} : {{ item.Customer }} : {{item.InvoiceDate | date:'dd/MM/yyyy'}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-app>
+

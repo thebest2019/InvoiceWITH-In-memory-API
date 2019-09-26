@@ -12,10 +12,23 @@
   <meta name="msapplication-tap-highlight" content="no" />
 
   <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
-
+  <link rel="stylesheet" href="assets/layui/css/layui.css">
+  <script src="assets/layui/layui.js"></script>
   <!-- add to homescreen for ios -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <script>
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function () {
+      var laydate = layui.laydate
+        , laypage = layui.laypage
+        , layer = layui.layer
+        , table = layui.table
+        , carousel = layui.carousel
+        , upload = layui.upload
+        , element = layui.element
+        , slider = layui.slider
+    });
+  </script>
 </head>
 
 <body>

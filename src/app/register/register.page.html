@@ -1,0 +1,236 @@
+<ion-app>
+  <ion-header translucent>
+    <ion-toolbar>
+      <ion-title>Register Account</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content [fullscreen]="true" class="best-main-background">
+    <div class="layadmin-user-login-main">
+      <div class="layadmin-user-login-box layadmin-user-login-header">
+        <img src="assets\icon\favicon.png" alt="">
+        <h2>
+          <font style="vertical-align: inherit;">
+            <font style="vertical-align: inherit;">IONIC Tutorial</font>
+          </font>
+        </h2>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+        <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+
+          <!-- Username -->
+          <div class="layui-form-item">
+            <label class="layadmin-user-login-icon layui-icon layui-icon-username"
+              for="LAY-user-login-username"></label>
+            <input type="text" name="username" id="LAY-user-login-username" lay-verify="required" placeholder="Email"
+              class="layui-input" autocomplete="true" formControlName="username">
+            <div class="validation-errors" *ngIf="(registerForm.controls['username'].touched || 
+              registerForm.controls['username'].dirty) && 
+              !registerForm.controls['username'].valid">
+              <div class="error-message" *ngIf="registerForm.controls['username'].errors?.required">
+                Please enter Username
+              </div>
+            </div>
+          </div>
+
+          <!-- Password and Confirm Password Group Match -->
+          <div formGroupName="passwordGroup">
+            <!-- Password -->
+            <div class="layui-form-item">
+              <label class="layadmin-user-login-icon layui-icon layui-icon-password"
+                for="LAY-user-login-password"></label>
+              <input type="password" name="password" id="LAY-user-login-password" lay-verify="required"
+                placeholder="Password" class="layui-input" autocomplete="false" formControlName="password">
+              <div class="validation-errors" *ngIf="registerForm.controls['passwordGroup'].errors ||
+                                            ((registerForm.controls['passwordGroup'].controls['password'].touched || 
+                                            registerForm.controls['passwordGroup'].controls['password'].dirty) && 
+                                            registerForm.controls['passwordGroup'].controls['password'].errors)">
+                <div class="error-message"
+                  *ngIf="registerForm.controls['passwordGroup'].controls['password'].errors?.required">
+                  Please enter Password
+                </div>
+                <div class="error-message" *ngIf="registerForm.controls['passwordGroup'].controls['password'].errors?.minlength && 
+                                          (registerForm.controls['passwordGroup'].controls['password'].touched || 
+                                          registerForm.controls['passwordGroup'].controls['password'].dirty)">
+                  Password's length must be at least 8 characters
+                </div>
+                <div class="error-message"
+                  *ngIf="registerForm.controls['passwordGroup'].controls['password'].errors?.pattern">
+                  Please must consist of lower case, upper case and nuermic characters.
+                </div>
+              </div>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="layui-form-item">
+              <label class="layadmin-user-login-icon layui-icon layui-icon-password"
+                for="LAY-user-login-password"></label>
+              <input type="password" name="cfpassword" id="LAY-user-login-repass" lay-verify="required"
+                placeholder="Confirm Password" class="layui-input" autocomplete="false"
+                formControlName="confirmPassword">
+              <div class="validation-errors" *ngIf="registerForm.controls['passwordGroup'].errors ||
+                ((registerForm.controls['passwordGroup'].controls['confirmPassword'].touched || 
+                registerForm.controls['passwordGroup'].controls['confirmPassword'].dirty) && 
+                registerForm.controls['passwordGroup'].controls['confirmPassword'].errors)">
+                <div class="error-message"
+                  *ngIf="registerForm.controls['passwordGroup'].controls['confirmPassword'].errors?.required">
+                  Please Confirm Password
+                </div>
+                <div class="error-message" *ngIf="registerForm.controls['passwordGroup'].controls['password'].errors?.minlength && 
+              (registerForm.controls['passwordGroup'].controls['password'].touched || 
+              registerForm.controls['passwordGroup'].controls['password'].dirty)">
+                  Password's length must be at least 8 characters
+                </div>
+                <div class="error-message"
+                  *ngIf="registerForm.controls['passwordGroup'].controls['password'].errors?.pattern">
+                  Please must consist of lower case, upper case and nuermic characters.
+                </div>
+                <div class="error-message" *ngIf="registerForm.controls['passwordGroup'].errors?.match">
+                  The password confirmation does not match.
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- First Name / Last Name-->
+          <div class="layui-row layui-col-space10">
+            <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+              <div class="layui-form-item">
+                <input type="text" name="firstname" lay-verify="required" placeholder="First Name" class="layui-input"
+                  autocomplete="true" style="padding-left: 5px; width: 100%;" formControlName="firstName">
+                <div class="validation-errors" *ngIf="(registerForm.controls['firstName'].touched || 
+                  registerForm.controls['firstName'].dirty) && 
+                  !registerForm.controls['firstName'].valid">
+                  <div class="error-message" *ngIf="registerForm.controls['firstName'].errors?.required">
+                    Please enter your first name.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+              <div class="layui-form-item">
+                <input type="text" name="lastname" lay-verify="required" placeholder="Last Name" class="layui-input"
+                  autocomplete="true" style="padding-left: 5px;width: 100%;" formControlName="lastName">
+                <div class="validation-errors" *ngIf="(registerForm.controls['lastName'].touched || 
+                                          registerForm.controls['lastName'].dirty) && 
+                                          !registerForm.controls['lastName'].valid">
+                  <div class="error-message" *ngIf="registerForm.controls['lastName'].errors?.required">
+                    Please enter your last name.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email Address -->
+          <div class="layui-form-item">
+            <label class="layadmin-user-login-icon layui-icon layui-icon-release" for="LAY-user-login-password"></label>
+            <input type="text" name="email" lay-verify="required" placeholder="Email" class="layui-input"
+              autocomplete="true" formControlName="email">
+            <div class="validation-errors" *ngIf="(registerForm.controls['email'].touched || 
+              registerForm.controls['email'].dirty) && 
+              !registerForm.controls['email'].valid">
+              <div class="error-message" *ngIf="registerForm.controls['email'].errors?.required">
+                Please enter email address.
+              </div>
+              <div class="error-message" *ngIf="registerForm.controls['email'].errors?.pattern">
+                Please enter valid email address.
+              </div>
+            </div>
+          </div>
+
+          <!-- Date of Birth -->
+          <div class="layui-form-item">
+            <label class="layadmin-user-login-icon layui-icon layui-icon-date" for="LAY-user-login-password"></label>
+            <ion-datetime displayFormat="MMMM DD, YYYY" name="DateofBirth" lay-verify="required"
+              placeholder="Select Date" class="layui-input" formControlName="birthDate"></ion-datetime>
+            <div class="validation-errors" *ngIf="(registerForm.controls['birthDate'].touched || 
+                                          registerForm.controls['birthDate'].dirty) && 
+                                          !registerForm.controls['birthDate'].valid">
+              <div class="error-message" *ngIf="registerForm.controls['birthDate'].errors?.required">
+                Please select your birth date.
+              </div>
+              <div class="error-message" *ngIf="registerForm.controls['birthDate'].errors?.range">
+                Your age must be between 15 - 65 to register.
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Country / Gender-->
+          <div class="layui-row layui-col-space10">
+            <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+              <div class="layui-form-item">
+                <ion-select formControlName="country" okText="Select" cancelText="Close" class="best-input"
+                  placeholder="Country">
+                  <ion-select-option value="Thailand" selected>Thailand</ion-select-option>
+                  <ion-select-option value="USA">USA</ion-select-option>
+                  <ion-select-option value="Campodia">Cambodia</ion-select-option>
+                  <ion-select-option value="Laos">Laos</ion-select-option>
+                  <ion-select-option value="Singapore">Singapore</ion-select-option>
+                </ion-select>
+                <div class="validation-errors" *ngIf="(registerForm.controls['country'].touched || 
+                                          registerForm.controls['country'].dirty) && 
+                                          !registerForm.controls['country'].valid">
+                  <div class="error-message" *ngIf="registerForm.controls['country'].errors?.required">
+                    Please select your country.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+              <div class="layui-form-item">
+                <ion-select formControlName="gender" okText="Select" cancelText="Close" class="best-input"
+                  placeholder="Gender">
+                  <ion-select-option value="M" selected>Male</ion-select-option>
+                  <ion-select-option value="F">Female</ion-select-option>
+                </ion-select>
+                <div class="validation-errors" *ngIf="(registerForm.controls['gender'].touched || 
+                                          registerForm.controls['gender'].dirty) && 
+                                          !registerForm.controls['gender'].valid">
+                  <div class="error-message" *ngIf="registerForm.controls['gender'].errors?.required">
+                    Please select your gender.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Consent  -->
+          <div class="layui-form-item" style="margin-bottom: 30px;">
+            <div class="my-checkbox ion-float-left">
+              <ion-checkbox color="primary" formControlName="consent" checked="true"></ion-checkbox>
+              <ion-label style="padding-left: 8px; font-size: 18px;">I accept the terms and conditions.</ion-label>
+            </div>
+            <div class="error-message" *ngIf="registerForm.controls['consent'].errors?.valid">
+              Please accept terms and conditions.
+            </div>
+
+          </div>
+
+          <div class="layui-form-item">
+            <div class="layui-row layui-col-space10">
+              <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+                <ion-button class="submit-btn" shape="round" expand="full" type="submit" [routerLink]="['/login']"
+                  routerLinkActive="router-link-active"> SignIn
+                  <ion-icon slot="start" ios="ios-arrow-dropleft" md="md-arrow-dropleft" style="padding-left: 8px">
+                  </ion-icon>
+                </ion-button>
+              </div>
+              <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+                <ion-button class="submit-btn" shape="round" expand="full" type="submit"
+                  [disabled]="registerForm.invalid"> SignUp
+                  <ion-icon slot="end" ios="ios-arrow-dropright" md="md-arrow-dropright" style="padding-left: 8px">
+                  </ion-icon>
+                </ion-button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </ion-content>
+</ion-app>

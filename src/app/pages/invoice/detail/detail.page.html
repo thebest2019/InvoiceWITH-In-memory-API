@@ -1,0 +1,23 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Invoice Detail</ion-title>
+      <ion-buttons slot="end" color="primary"><a style="vertical-align: inherit;" style="font-size: 18px"
+          [routerLink]="['/taps/tabs/invoice/create']" routerLinkActive="router-link-active">Create</a></ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-item *ngFor="let item of itemsD" class="ion-padding" style="line-height: 25px">
+      <table>
+        <tr><td style="text-align: right;font-weight: bold">Invoice No:</td><td style="text-align: left; padding-left: 20px">{{item.invoiceNo}}</td></tr>
+        <tr><td style="text-align: right;font-weight: bold">Product Id:</td><td style="text-align: left; padding-left: 20px">{{item.productId}}</td></tr>
+        <tr><td style="text-align: right;font-weight: bold">Product Name:</td><td style="text-align: left; padding-left: 20px">{{item.ProductName}}</td></tr>
+        <tr><td style="text-align: right;font-weight: bold">Qty:</td><td style="text-align: left; padding-left: 20px">{{item.qty}}</td></tr>
+        <tr><td style="text-align: right;font-weight: bold">Unit Cost:</td><td style="text-align: left; padding-left: 20px">{{item.unitPrice}}</td></tr>
+        <tr><td style="text-align: right;font-weight: bold">Discount:</td><td style="text-align: left; padding-left: 20px">{{item.discount}}</td></tr>
+        <tr><td style="text-align: right;font-weight: bold">lineTotal:</td><td style="text-align: left; padding-left: 20px">{{item.lineTotal}}</td></tr>
+      </table>
+    </ion-item>
+  </ion-content>
+</ion-app>

@@ -1,0 +1,83 @@
+<ion-app>
+  <ion-header translucent>
+    <ion-toolbar>
+      <ion-title>Login Account</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content [fullscreen]="true">
+    <div class="layadmin-user-login-main">
+      <div class="layadmin-user-login-box layadmin-user-login-header">
+        <img src="assets\icon\favicon.png" alt="">
+        <h2>
+          <font style="vertical-align: inherit;">
+            <font style="vertical-align: inherit;">IONIC Tutorial</font>
+          </font>
+        </h2>
+        <p>
+          <font style="vertical-align: inherit;">
+            <font style="vertical-align: inherit;">Welcome to Bizkit Production.
+              <br />Please login to our system.</font>
+          </font>
+        </p>
+      </div>
+
+
+      <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+        <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+          <div class="layui-form-item">
+            <label class="layadmin-user-login-icon layui-icon layui-icon-username"
+              for="LAY-user-login-username"></label>
+            <input type="text" name="username" id="LAY-user-login-username" lay-verify="required" placeholder="Email"
+              class="layui-input" autocomplete="true" formControlName="username">
+            <div class="validation-errors"
+              *ngIf="(loginForm.controls['username'].touched || loginForm.controls['username'].dirty) && !loginForm.controls['username'].valid">
+              <div class="error-message" *ngIf="loginForm.controls['username'].errors?.required">
+                Please enter Username
+              </div>
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layadmin-user-login-icon layui-icon layui-icon-password"
+              for="LAY-user-login-password"></label>
+            <input type="password" name="password" id="LAY-user-login-password" lay-verify="required"
+              placeholder="Password" class="layui-input" autocomplete="false" formControlName="password">
+            <div class="validation-errors"
+              *ngIf="(loginForm.controls['password'].touched || loginForm.controls['password'].dirty) && loginForm.controls['password'].errors">
+              <div class="error-message" *ngIf="loginForm.controls['password'].errors?.required">
+                Please enter Password
+              </div>
+            </div>
+          </div>
+          <div class="layui-form-item" style="margin-bottom: 20px;">
+            <div class="my-checkbox ion-float-left">
+              <ion-checkbox color="primary"></ion-checkbox>
+              <ion-label style="padding-left: 8px; font-size: 18px;">Remember Me</ion-label>
+            </div>
+            <a lay-href="/user/forget" class="layadmin-user-jump-change layadmin-link" style="margin-top: 7px;">
+              <font style="vertical-align: inherit;">
+                <a style="vertical-align: inherit;" style="font-size: 18px" [routerLink]="['/reset-pass']" routerLinkActive="router-link-active" >Forget Password?</a>
+              </font>
+            </a>
+          </div>
+          <div class="layui-form-item">
+            <ion-button class="submit-btn" expand="full" shape="round" [disabled]="loginForm.errors" type="submit">
+              Login Now
+              <ion-icon slot="end" ios="ios-arrow-dropright" md="md-arrow-dropright" style="padding-left: 15px">
+              </ion-icon>
+            </ion-button>
+          </div>
+          <div class="layui-trans layui-form-item layadmin-user-login-other">
+            <div class="layadmin-user-jump-change layadmin-link">
+              <font style="vertical-align: inherit;" style="font-size: 18px"> No account?
+                <a style="vertical-align: inherit;" style="font-size: 18px" [routerLink]="['/register']" routerLinkActive="router-link-active" >Create one!</a>
+              </font>
+            </div>
+          </div>
+        </div>
+      </form>
+
+
+
+    </div>
+  </ion-content>
+</ion-app>
